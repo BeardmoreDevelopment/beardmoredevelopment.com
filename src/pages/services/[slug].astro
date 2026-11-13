@@ -21,6 +21,12 @@ const { labels } = servicesPage;
 ---
 
 <Base title={`${service.title} | ${site.name}`} description={service.summary}>
+  <p class="-mb-6 pt-8 font-mono text-sm">
+    <TextLink href="/services/">
+      <span aria-hidden="true">&larr;&nbsp;</span>
+      {labels.back}
+    </TextLink>
+  </p>
   <PageHeader label={`// ${service.id}`} heading={service.title} lede={service.summary} />
 
   <section class="pb-10">
@@ -58,6 +64,10 @@ const { labels } = servicesPage;
         <span />
       )
     }
+    <TextLink href="/services/">
+      <span aria-hidden="true">&larr;&nbsp;</span>
+      {labels.back}
+    </TextLink>
     {
       next && (
         <TextLink href={`/services/${next.slug}/`}>
