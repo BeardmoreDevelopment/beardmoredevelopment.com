@@ -13,5 +13,5 @@ rm -rf .git
 git init -q -b gh-pages
 git add -A
 git commit -q -m "Deploy $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-git push --force "$remote" gh-pages
+git -c credential.helper='!gh auth git-credential' push --force "$remote" gh-pages
 rm -rf .git
