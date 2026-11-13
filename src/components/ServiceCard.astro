@@ -1,15 +1,27 @@
 ---
+// The whole card is one link to the service's page.
 interface Props {
+  slug: string;
   id: string;
   title: string;
   text: string;
 }
 
-const { id, title, text } = Astro.props;
+const { slug, id, title, text } = Astro.props;
 ---
 
-<li class="relative rounded-md border border-line bg-card px-4 pt-5 pb-4 text-sm text-body">
-  <span class="absolute -top-2 left-3 bg-bg px-1.5 font-mono text-xs leading-4 text-linework">{id}</span>
-  <h3 class="mb-1.5 font-mono font-bold text-ink">{title}</h3>
-  <p>{text}</p>
+<li class="flex">
+  <a
+    href={`/services/${slug}/`}
+    class="group relative flex-1 cursor-pointer rounded-md border border-line bg-card px-4 pt-5 pb-4 text-sm text-body transition-colors duration-200 hover:border-linework focus-visible:border-linework focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework motion-reduce:transition-none"
+  >
+    <span class="absolute -top-2 left-3 bg-bg px-1.5 font-mono text-xs leading-4 text-linework">{id}</span>
+    <h3
+      class="mb-1.5 flex justify-between gap-2 font-mono font-bold text-ink transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none"
+    >
+      {title}
+      <span aria-hidden="true" class="text-linework">&rarr;</span>
+    </h3>
+    <p>{text}</p>
+  </a>
 </li>

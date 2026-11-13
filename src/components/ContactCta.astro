@@ -1,0 +1,13 @@
+---
+// Closing call to action used at the foot of most pages.
+import { site } from '../data/site';
+import EmailActions from './EmailActions.astro';
+import SectionLabel from './SectionLabel.astro';
+---
+
+<section class="pb-16">
+  <SectionLabel>{site.contact.label}</SectionLabel>
+  <p class="text-lg text-ink">{site.contact.availability}</p>
+  <p class="mt-1 mb-5 font-mono text-sm text-muted">{site.contact.location}</p>
+  <EmailActions />
+</section>

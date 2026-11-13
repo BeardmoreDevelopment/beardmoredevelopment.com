@@ -1,0 +1,17 @@
+---
+// Inline text link, tall enough to be a 44px touch target.
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex min-h-11 items-center text-accent underline underline-offset-4 transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework motion-reduce:transition-none',
+    className,
+  ]}><slot /></a
+>

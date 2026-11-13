@@ -1,5 +1,7 @@
 ---
 import { site } from '../data/site';
+
+const path = Astro.url.pathname;
 ---
 
 <header class="border-b border-line">
@@ -8,23 +10,31 @@ import { site } from '../data/site';
     class="mx-auto flex max-w-5xl flex-col px-4 py-2 font-mono text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8"
   >
     <a
-      href="#top"
-      class="inline-flex min-h-11 items-center self-start font-bold text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework"
+      href="/"
+      class="inline-flex min-h-11 items-center self-start font-bold text-accent transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework motion-reduce:transition-none"
     >
       {site.wordmark}
     </a>
-    <ul class="flex gap-6 text-muted">
+    <ul class="flex gap-6">
       {
-        site.nav.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="inline-flex min-h-11 items-center hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))
+        site.nav.map((link) => {
+          // Sub-pages (a single service) keep their section highlighted.
+          const active = path.startsWith(link.href);
+          return (
+            <li>
+              <a
+                href={link.href}
+                aria-current={path === link.href ? 'page' : active ? 'true' : undefined}
+                class:list={[
+                  'inline-flex min-h-11 items-center underline-offset-8 transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-linework motion-reduce:transition-none',
+                  active ? 'text-ink underline decoration-accent decoration-2' : 'text-muted',
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </nav>

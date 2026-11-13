@@ -1,0 +1,20 @@
+---
+import ContactCta from '../../components/ContactCta.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { services, servicesPage } from '../../data/services';
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title={servicesPage.title} description={servicesPage.description}>
+  <PageHeader label={servicesPage.label} heading={servicesPage.heading} lede={servicesPage.lede} />
+
+  <section class="pb-12">
+    <h2 class="sr-only">{servicesPage.listHeading}</h2>
+    <ul class="grid gap-x-4 gap-y-6 sm:grid-cols-2">
+      {services.map((s) => <ServiceCard slug={s.slug} id={s.id} title={s.title} text={s.intro[0]} />)}
+    </ul>
+  </section>
+
+  <ContactCta />
+</Base>

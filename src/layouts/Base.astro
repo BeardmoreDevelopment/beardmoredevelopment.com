@@ -1,24 +1,34 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import TitleBlock from '../components/TitleBlock.astro';
 import { site } from '../data/site';
 
+interface Props {
+  title: string;
+  description: string;
+  /** For the 404 page: no canonical URL, and kept out of search results. */
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="en-GB" class="motion-safe:scroll-smooth">
+<html lang="en-GB">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.title}</title>
-    <meta name="description" content={site.description} />
-    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content="#0f172a" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={site.title} />
-    <meta property="og:description" content={site.description} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content="en_GB" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,13 +38,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       rel="stylesheet"
     />
   </head>
-  <body class="bg-drafting-grid bg-bg font-sans text-ink antialiased">
+  <body class="bg-drafting-grid flex min-h-screen flex-col bg-bg font-sans text-ink antialiased">
     <a
       href="#main"
       class="sr-only rounded-md bg-accent px-4 py-3 font-semibold text-bg focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-10"
     >
       {site.skipLink}
     </a>
-    <slot />
+    <Nav />
+    <main id="main" class="mx-auto w-full max-w-5xl flex-1 px-4 sm:px-8">
+      <slot />
+    </main>
+    <TitleBlock />
   </body>
 </html>

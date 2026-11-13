@@ -1,0 +1,11 @@
+---
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="max-w-3xl list-disc space-y-2 pl-5 text-body marker:text-linework">
+  {items.map((item) => <li>{item}</li>)}
+</ul>

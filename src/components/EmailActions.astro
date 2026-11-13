@@ -1,0 +1,13 @@
+---
+// The email button with the address beside it as text.
+import { site } from '../data/site';
+import EmailButton from './EmailButton.astro';
+import TextLink from './TextLink.astro';
+---
+
+<div class="flex flex-col items-start gap-x-5 gap-y-2 sm:flex-row sm:items-center">
+  <EmailButton />
+  <TextLink href={`mailto:${site.email}`} class="font-mono text-xs break-all sm:text-sm">
+    {site.email}
+  </TextLink>
+</div>

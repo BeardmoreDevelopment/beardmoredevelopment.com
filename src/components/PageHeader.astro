@@ -1,0 +1,16 @@
+---
+// Top of every page except home: mono label, the page's h1 and an optional lede.
+interface Props {
+  label: string;
+  heading: string;
+  lede?: string;
+}
+
+const { label, heading, lede } = Astro.props;
+---
+
+<header class="py-12">
+  <p class="mb-3 font-mono text-xs tracking-widest text-linework uppercase">{label}</p>
+  <h1 class="max-w-2xl text-4xl leading-tight font-semibold lg:text-5xl">{heading}</h1>
+  {lede && <p class="mt-4 max-w-2xl text-lg text-body">{lede}</p>}
+</header>

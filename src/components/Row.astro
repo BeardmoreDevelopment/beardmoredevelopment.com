@@ -1,0 +1,14 @@
+---
+// A ruled line: mono label on the left, sentence on the right. Use inside a <ul>.
+interface Props {
+  label: string;
+  text: string;
+}
+
+const { label, text } = Astro.props;
+---
+
+<li class="flex flex-col gap-1 border-t border-line py-3 sm:flex-row sm:gap-4">
+  <span class="shrink-0 font-mono text-sm text-muted sm:w-44">{label}</span>
+  <span class="text-body">{text}</span>
+</li>

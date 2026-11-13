@@ -1,0 +1,36 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Row from '../components/Row.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import TextLink from '../components/TextLink.astro';
+import { about } from '../data/site';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title={about.title} description={about.description}>
+  <PageHeader label={about.label} heading={about.heading} lede={about.lede} />
+
+  <section class="pb-10">
+    <SectionLabel>{about.whoLabel}</SectionLabel>
+    <div class="max-w-3xl space-y-4 text-body">
+      {about.who.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="pb-10">
+    <SectionLabel>{about.howLabel}</SectionLabel>
+    <ul class="border-b border-line">
+      {about.how.map((row) => <Row {...row} />)}
+    </ul>
+  </section>
+
+  <section class="pb-10">
+    <SectionLabel>{about.historyLabel}</SectionLabel>
+    <p class="text-body">
+      {about.historyIntro}{' '}<TextLink href={about.historyLink.href}>{about.historyLink.label}</TextLink>.
+    </p>
+  </section>
+
+  <ContactCta />
+</Base>

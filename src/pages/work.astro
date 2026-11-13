@@ -1,0 +1,31 @@
+---
+import BulletList from '../components/BulletList.astro';
+import ContactCta from '../components/ContactCta.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import { employers, workPage } from '../data/work';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title={workPage.title} description={workPage.description}>
+  <PageHeader label={workPage.label} heading={workPage.heading} lede={workPage.lede} />
+
+  {
+    employers.map((employer) => (
+      <section class="pb-10">
+        <SectionLabel>// {employer.name}</SectionLabel>
+        <div class="space-y-8">
+          {employer.roles.map((role) => (
+            <div>
+              <h3 class="font-mono font-bold text-ink">{role.title}</h3>
+              <p class="mt-1 mb-3 font-mono text-sm text-muted">{role.dates}</p>
+              <BulletList items={role.points} />
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <ContactCta />
+</Base>

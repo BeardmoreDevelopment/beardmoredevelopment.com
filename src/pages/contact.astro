@@ -1,0 +1,24 @@
+---
+import EmailActions from '../components/EmailActions.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Row from '../components/Row.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import { contact, site } from '../data/site';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title={contact.title} description={contact.description}>
+  <PageHeader label={contact.label} heading={contact.heading} lede={site.contact.availability} />
+
+  <div class="pb-12">
+    <p class="mb-5 font-mono text-sm text-muted">{site.contact.location}</p>
+    <EmailActions />
+  </div>
+
+  <section class="pb-16">
+    <SectionLabel>{contact.includeLabel}</SectionLabel>
+    <ul class="border-b border-line">
+      {contact.include.map((row) => <Row {...row} />)}
+    </ul>
+  </section>
+</Base>
