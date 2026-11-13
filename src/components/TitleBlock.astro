@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="border-t border-line font-mono text-xs text-muted uppercase">
+  <div class="mx-auto max-w-5xl px-4 sm:px-8">
+    <!-- -mt-px tucks the first row's top border under the footer rule -->
+    <div class="overflow-hidden border-r border-line">
+      <dl class="-mt-px grid grid-cols-2 sm:grid-cols-5">
+        {
+          site.titleBlock.map((cell) => (
+            <div class="border-t border-l border-line px-3 py-2 first:sm:col-span-2">
+              <dt>{cell.label}</dt>
+              <dd class="text-sm font-bold text-ink">{cell.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</footer>

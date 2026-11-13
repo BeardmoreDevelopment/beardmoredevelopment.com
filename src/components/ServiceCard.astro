@@ -1,0 +1,15 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  text: string;
+}
+
+const { id, title, text } = Astro.props;
+---
+
+<li class="relative rounded-md border border-line bg-card px-4 pt-5 pb-4 text-sm text-body">
+  <span class="absolute -top-2 left-3 bg-bg px-1.5 font-mono text-xs leading-4 text-linework">{id}</span>
+  <h3 class="mb-1.5 font-mono font-bold text-ink">{title}</h3>
+  <p>{text}</p>
+</li>

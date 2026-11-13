@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0f172a;
+  --color-card: #1b2336;
+  --color-line: #334155;
+  --color-ink: #f8fafc;
+  --color-body: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-dim: #64748b;
+  --color-accent: #22c55e;
+  --color-linework: #7dd3fc;
+
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Faint 24px drafting grid: two layered gradients, which Tailwind utilities can't express cleanly. */
+@utility bg-drafting-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-linework) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-linework) 5%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

@@ -1,0 +1,12 @@
+---
+import { site } from '../data/site';
+import SectionLabel from './SectionLabel.astro';
+import WorkRow from './WorkRow.astro';
+---
+
+<section id="work" class="pb-10">
+  <SectionLabel>{site.work.label}</SectionLabel>
+  <ul>
+    {site.work.items.map((item) => <WorkRow {...item} />)}
+  </ul>
+</section>

@@ -1,0 +1,42 @@
+---
+import { site } from '../data/site';
+
+const { label, source, framework, targets, dimensions } = site.diagram;
+// Top edge of each target box; boxes are 90x40 at x=260.
+const targetY = [30, 90, 150];
+---
+
+<svg
+  viewBox="0 0 360 220"
+  role="img"
+  aria-label={label}
+  class="w-full fill-none stroke-linework font-mono"
+  stroke-width="1.5"
+  font-size="11"
+  text-anchor="middle"
+>
+  <rect x="10" y="70" width="90" height="60"></rect>
+  <text x="55" y="104" class="fill-ink stroke-none">{source}</text>
+
+  <rect x="135" y="50" width="90" height="100" stroke-dasharray="5 4" class="stroke-accent"></rect>
+  <text x="180" y="96" class="fill-ink stroke-none">{framework[0]}</text>
+  <text x="180" y="112" class="fill-ink stroke-none">{framework[1]}</text>
+
+  {
+    targets.map((target, i) => (
+      <>
+        <rect x="260" y={targetY[i]} width="90" height="40" />
+        <text x="305" y={targetY[i] + 24} class="fill-ink stroke-none">
+          {target}
+        </text>
+      </>
+    ))
+  }
+
+  <path d="M100 100h35M225 80l35-30M225 100l35 10M225 125l35 45"></path>
+
+  <path d="M10 160v20M100 160v20M10 170h90" stroke-width="1" class="stroke-dim"></path>
+  <text x="55" y="194" class="fill-muted stroke-none">{dimensions[0]}</text>
+  <path d="M135 22v-12M225 22v-12M135 16h90" stroke-width="1" class="stroke-dim"></path>
+  <text x="180" y="38" class="fill-muted stroke-none">{dimensions[1]}</text>
+</svg>

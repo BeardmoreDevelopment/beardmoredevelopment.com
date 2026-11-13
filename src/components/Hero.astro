@@ -1,0 +1,16 @@
+---
+import { site } from '../data/site';
+import Diagram from './Diagram.astro';
+import EmailButton from './EmailButton.astro';
+---
+
+<section id="top" class="grid items-center gap-8 py-12 md:grid-cols-2">
+  <div>
+    <h1 class="max-w-md text-4xl leading-tight font-semibold lg:text-5xl">
+      {site.hero.headline}{' '}<span class="text-accent">{site.hero.highlight}</span>
+    </h1>
+    <p class="mt-4 mb-6 max-w-lg text-lg text-body">{site.hero.lede}</p>
+    <EmailButton />
+  </div>
+  <Diagram />
+</section>
